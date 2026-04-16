@@ -27,7 +27,7 @@ public class UsuarioAlDAO {
         values.put("email", usuario.getEmail());
         values.put("senha", usuario.getSenha());
 
-        long resultando = db.insert(DatabaseConection.TABELA_USUARIO_ALU,null, values)
+        long resultando = db.insert(DatabaseConection.TABELA_USUARIO_ALU,null, values);
 
         return resultando != 1;
     }
@@ -41,7 +41,7 @@ public class UsuarioAlDAO {
                 new String[]{email, senha}
         );
 
-        boolean existe = cursor.getCount() > 0:
+        boolean existe = cursor.getCount() > 0;
         cursor.close();
 
         return existe;

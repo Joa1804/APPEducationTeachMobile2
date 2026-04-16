@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Cadastro"
-        app:icon="@drawable/user_3917688"
+        app:icon="@drawable/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.705"
         app:layout_constraintStart_toEndOf="@+id/textView"

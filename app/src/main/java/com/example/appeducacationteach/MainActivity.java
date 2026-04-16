@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button Casa, Rank, Configuracao, Projeto, Educacoa;
+    Button Casa, Rank, Configuracao, Projeto, Educacoa, Login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,12 @@ public class MainActivity extends AppCompatActivity {
         Configuracao  =findViewById(R.id.btnConfiguracao);
         Projeto = findViewById(R.id.btnDesafio);
         Educacoa = findViewById(R.id.btnEducao);
+        Login = findViewById(R.id.btnLogin);
+
+        Login.setOnClickListener(v -> {
+            Intent TelaLogin = new Intent(MainActivity.this, MainLogin.class);
+            startActivity(TelaLogin);
+        });
 
         Rank.setOnClickListener(v -> {
             Intent TelaRank = new Intent(MainActivity.this, MainRank.class);

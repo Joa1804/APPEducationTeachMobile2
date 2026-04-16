@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.APPEducacationTeach">
         <activity
+            android:name=".MainLogin"
+            android:exported="false" />
+        <activity
             android:name=".MainProject"
             android:exported="false" />
         <activity
