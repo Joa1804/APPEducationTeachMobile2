@@ -42,21 +42,37 @@ public class MainLogin extends AppCompatActivity {
             @Override
             public void onClick(@NonNull View widget) {
 
+                Intent PaginadeCadastro = new Intent(MainLogin.this, MainCadastro.class);
+                startActivity(PaginadeCadastro);
 
             }
         };
 
+        ss.setSpan(clickableSpan, 0, textcadastra.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        if (usuarioAlDAO.login(Email,Senha)) {
-            NavegarParaHome();
-        }else{
-            Toast.makeText(this,"Login invalido", Toast.LENGTH_SHORT).show();
-        }
+        Cadastro.setText(ss);
+        Cadastro.setMovementMethod(LinkMovementMethod.getInstance());
+
+
+        Entrarda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String emailDigital = Email.getText().toString();
+                String senhaDigital = Senha.getText().toString();
+
+                if (usuarioAlDAO.login(emailDigital, senhaDigital)) {
+                    navegarParaHome();
+                } else {
+                    Toast.makeText(MainLogin.this, "Login Invalido", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
 
         private void navegarParaHome() {
-            Intent TelaPrincipal = new  Intent(MainLogin.this, MainActivity.class);
-            startActivity(TelaPrincipal);
+            Intent telaPrincipal = new Intent(MainLogin.this, MainActivity.class);
+            startActivity(telaPrincipal);
         }
 
-    }
 }
