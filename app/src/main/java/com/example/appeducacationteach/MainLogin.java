@@ -33,7 +33,7 @@ public class MainLogin extends AppCompatActivity {
         Email = findViewById(R.id.edtEmail);
         Cadastro = findViewById(R.id.textCadastro);
 
-        usuarioAlDAO = new UsuarioAlDAO();
+        usuarioAlDAO = new UsuarioAlDAO(this);
 
         String textcadastra = "Cadastra";
         SpannableString ss = new SpannableString(textcadastra);

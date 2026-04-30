@@ -26,23 +26,27 @@ public class UsuarioAlDAO {
         ContentValues values = new ContentValues();
         values.put("email", usuario.getEmail());
         values.put("senha", usuario.getSenha());
+        values.put("nome", usuario.getNome());
+        values.put("nickname",usuario.getNickname());
 
         long resultando = db.insert(DatabaseConection.TABELA_USUARIO_ALU,null, values);
 
-        return resultando != 1;
+        db.close();
+        return resultando != -1;
     }
 
     public boolean login(String email, String senha){
         db = con.getWritableDatabase();
 
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM" +DatabaseConection.TABELA_USUARIO_ALU +
-                        "WHERE email=? AND senha=?",
+                "SELECT * FROM " +DatabaseConection.TABELA_USUARIO_ALU +
+                        " WHERE email = ? AND senha=? AND nome = ? AND nickmane = ?",
                 new String[]{email, senha}
         );
 
         boolean existe = cursor.getCount() > 0;
         cursor.close();
+        db.close();
 
         return existe;
     }
