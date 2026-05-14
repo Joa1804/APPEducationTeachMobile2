@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseConection extends SQLiteOpenHelper{
 
     private static final String DB_NAME = "app.db";
-    private static final int DB_VERSION = 2;
+    private static final int DB_VERSION = 5;
 
     public static final String TABELA_USUARIO_ALU = "UsuarioAluno";
     public static final String TABELA_USUARIO_PROF = "UsuarioProfessor";
@@ -19,18 +19,31 @@ public class DatabaseConection extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE " + TABELA_USUARIO_ALU + "("+
-                "id INTERGER PRIMARY KEY AUTOINCREMENT," +
+        String sqlProf = "CREATE TABLE " + TABELA_USUARIO_PROF + "(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "email TEXT UNIQUE," +
-                "senha TEXT)";
+                "senha TEXT, " +
+                "CPF TEXT, " +
+                "nome TEXT," +
+                "disciplina TEXT)";
 
-        db.execSQL(sql);
+
+        String sqlAluno = "CREATE TABLE " + TABELA_USUARIO_ALU + "("+
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "email TEXT UNIQUE," +
+                "senha TEXT, " +
+                "name TEXT," +
+                "nickname TEXT)";
+
+        db.execSQL(sqlAluno);
+        db.execSQL(sqlProf);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO_ALU);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO_PROF);
         onCreate(db);
     }
 

@@ -15,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.appeducacationteach.dao.UsuarioAlDAO;
+import com.example.appeducacationteach.dao.UsuarioProfDAO;
+import com.example.appeducacationteach.model.UsuarioProfessor;
 
 public class MainLogin extends AppCompatActivity {
 
@@ -22,6 +24,7 @@ public class MainLogin extends AppCompatActivity {
     private EditText Senha, Email;
     private TextView Cadastro;
     private UsuarioAlDAO usuarioAlDAO;
+    private UsuarioProfDAO usuarioProfDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainLogin extends AppCompatActivity {
         Cadastro = findViewById(R.id.textCadastro);
 
         usuarioAlDAO = new UsuarioAlDAO(this);
+        usuarioProfDAO = new UsuarioProfDAO(this);
 
         String textcadastra = "Cadastra";
         SpannableString ss = new SpannableString(textcadastra);
@@ -58,20 +62,38 @@ public class MainLogin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String emailDigital = Email.getText().toString();
-                String senhaDigital = Senha.getText().toString();
+                String emailDigital = Email.getText().toString().trim();
+                String senhaDigital = Senha.getText().toString().trim();
+
+                if (emailDigital.isEmpty() || senhaDigital.isEmpty()) {
+                    Toast.makeText(MainLogin.this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if (usuarioAlDAO.login(emailDigital, senhaDigital)) {
-                    navegarParaHome();
+                    navegarParaHome("aluno");
+
+                } else if (usuarioProfDAO.login(emailDigital, senhaDigital)) {
+                    navegarParaHome("professor");
+
                 } else {
-                    Toast.makeText(MainLogin.this, "Login Invalido", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainLogin.this, "Email ou senha inválidos", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
     }
 
-        private void navegarParaHome() {
-            Intent telaPrincipal = new Intent(MainLogin.this, MainActivity.class);
+        private void navegarParaHome(String tipoUsuario) {
+            Intent telaPrincipal;
+
+            if (tipoUsuario.equals("professor")) {
+                telaPrincipal = new Intent(MainLogin.this, MainProfessor.class);
+            } else {
+                telaPrincipal = new Intent(MainLogin.this, MainActivity.class);
+            }
+
+            telaPrincipal.putExtra("tipo_usuario", tipoUsuario);
             startActivity(telaPrincipal);
         }
 
