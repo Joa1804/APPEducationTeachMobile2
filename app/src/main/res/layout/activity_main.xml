@@ -9,49 +9,45 @@
     android:background="@drawable/bg_gradient"
     tools:context=".MainActivity">
 
+    <!-- Cabeçalho -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
         android:text="Educa Teach"
-        android:textColor="#FFFFFF"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/cardDashboard"
-        app:layout_constraintEnd_toStartOf="@+id/btnLogin"
-        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintVertical_bias="0.5"/>
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cadastro"
-        android:backgroundTint="#FFFFFF"
+        android:backgroundTint="@android:color/white"
         android:textColor="#673AB7"
         app:icon="@drawable/login"
         app:iconTint="#673AB7"
         app:layout_constraintBottom_toTopOf="@+id/cardDashboard"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"/>
 
+    <!-- Card principal -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardDashboard"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_margin="24dp"
         app:cardCornerRadius="24dp"
         app:cardElevation="8dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:cardBackgroundColor="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView">
@@ -59,17 +55,62 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="vertical"
             android:padding="24dp">
 
+            <!-- Informações do usuário -->
+            <TextView
+                android:id="@+id/txtNivel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nível 5"
+                android:textColor="#424242"
+                android:textStyle="bold"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/txtPontos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pontos: 1125"
+                android:textColor="#757575"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/txtClassificacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Classificação: Ouro"
+                android:textColor="#FFD700"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Barra de progresso -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trilha: Comandos Básicos"
+                android:textColor="#424242"
+                android:layout_marginBottom="4dp"/>
+
+            <ProgressBar
+                android:id="@+id/progressTrilha"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="100"
+                android:max="100"
+                android:progressTint="#673AB7"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Logo e título -->
             <ImageView
                 android:id="@+id/imgLogo"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_marginBottom="12dp"
                 android:src="@drawable/smart_contract_19012017"
-                app:tint="#673AB7" />
+                app:tint="#673AB7"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -77,128 +118,29 @@
                 android:text="CodeKids"
                 android:textColor="#212121"
                 android:textSize="28sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="24dp"
                 android:text="Aprenda a programar brincando!"
                 android:textColor="#757575"
-                android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:text="Olá, pequeno desenvolvedor!\nPronto para a aventura de hoje?"
-                android:textAlignment="center"
-                android:textColor="#424242"
-                android:textSize="16sp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <Button
-                    android:id="@+id/btnJogar"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#673AB7"
-                    android:text="Jogar"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    app:cornerRadius="12dp" />
-
-                <Button
-                    android:id="@+id/btnAulas"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#00BFA5"
-                    android:text="Desafios"
-                    android:textAllCaps="false"
-                    android:textColor="#FFFFFF"
-                    android:textSize="14sp"
-                    app:cornerRadius="12dp" />
-            </LinearLayout>
+                android:textSize="16sp"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <!-- Barra inferior otimizada -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:orientation="horizontal"
-        android:background="#FFFFFF"
-        android:elevation="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/btnDesafio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/smart_contract_19012017"
-            app:iconGravity="textStart"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnEducao"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/book_3927603"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnCasa"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/house_chimney_blank_9243282"
-            app:iconSize="27dp"
-            app:iconTint="#673AB7" />
-
-        <Button
-            android:id="@+id/btnRank"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/rank_19007196"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnConfiguracao"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/simbolo_de_interface_de_configuracao_de_duas_rodas_dentadas"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-    </LinearLayout>
+        android:background="@android:color/white"
+        app:itemIconTint="@color/nav_item_colors"
+        app:itemTextColor="@color/nav_item_colors"
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
