@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseConection extends SQLiteOpenHelper{
 
     private static final String DB_NAME = "app.db";
-    private static final int DB_VERSION = 5;
+    private static final int DB_VERSION = 6;
 
     public static final String TABELA_USUARIO_ALU = "UsuarioAluno";
     public static final String TABELA_USUARIO_PROF = "UsuarioProfessor";
@@ -32,8 +32,10 @@ public class DatabaseConection extends SQLiteOpenHelper{
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "email TEXT UNIQUE," +
                 "senha TEXT, " +
-                "name TEXT," +
-                "nickname TEXT)";
+                "nome TEXT," +
+                "nickname TEXT,"+
+                "nivel INTEGER DEFAULT 1," +
+                "pontos INTEGER DEFAULT 0)";
 
         db.execSQL(sqlAluno);
         db.execSQL(sqlProf);

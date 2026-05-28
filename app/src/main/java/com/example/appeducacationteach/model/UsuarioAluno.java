@@ -10,11 +10,16 @@ public class UsuarioAluno {
     private String email;
     private String senha;
 
+    private int nivel;
+    private int pontos;
+
     public UsuarioAluno(String nome, String nickname, String email, String senha){
         this.nome = nome;
         this.nickname = nickname;
         this.email = email;
         this.senha = senha;
+        this.nivel = 1;
+        this.pontos = 0;
     }
 
 
@@ -64,6 +69,22 @@ public class UsuarioAluno {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public int getPontos() {
+        return pontos;
+    }
+
+    public void setPontos(int pontos) {
+        this.pontos = pontos;
     }
 
 }

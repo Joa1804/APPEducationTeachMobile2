@@ -4,24 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
+import android.view.MenuItem;
+import com.google.android.material.navigation.NavigationBarView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigationevent.NavigationEventDispatcherOwner;
+
+import com.google.android.material.bottomappbar.BottomAppBar;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    Button Casa, Rank, Configuracao, Projeto, Educacoa, Login;
+    Button Login;
+    BottomNavigationView bottomNavigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Casa = findViewById(R.id.btnCasa);
-        Rank = findViewById(R.id.btnRank);
-        Configuracao  =findViewById(R.id.btnConfiguracao);
-        Projeto = findViewById(R.id.btnDesafio);
-        Educacoa = findViewById(R.id.btnEducao);
         Login = findViewById(R.id.btnLogin);
 
         Login.setOnClickListener(v -> {
@@ -29,26 +33,42 @@ public class MainActivity extends AppCompatActivity {
             startActivity(TelaLogin);
         });
 
-        Rank.setOnClickListener(v -> {
-            Intent TelaRank = new Intent(MainActivity.this, MainRank.class);
-            startActivity(TelaRank);
-        });
+        bottomNavigation = findViewById(R.id.bottomNavigation);
 
-        Configuracao.setOnClickListener(v -> {
-            Intent TelaConfiguracao = new Intent(MainActivity.this, MainSettings.class);
-            startActivity(TelaConfiguracao);
-        });
+        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
 
-        Projeto.setOnClickListener(v -> {
-            Intent TelsProjeto = new Intent(MainActivity.this, MainProject.class);
-            startActivity(TelsProjeto);
-        });
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
 
-        Educacoa.setOnClickListener(v -> {
-            Intent TelaEducacao = new Intent(MainActivity.this, MainEducation.class );
-            startActivity(TelaEducacao);
-        });
+                int id = item.getItemId();
 
+                if (id == R.id.nav_inicio) {
+                    return true;
+
+                } else if (id == R.id.nav_trilhas) {
+                    Intent Telaprojeto = new Intent(MainActivity.this, MainProject.class);
+                    startActivity(Telaprojeto);
+                    return true;
+
+                } else if (id == R.id.nav_ranking) {
+                    Intent Telarank = new Intent(MainActivity.this, MainRank.class);
+                    startActivity(Telarank);
+                    return true;
+
+                } else if (id == R.id.nav_educacao) {
+                    Intent Telaeducacao = new Intent(MainActivity.this, MainEducation.class);
+                    startActivity(Telaeducacao);
+                    return true;
+
+                } else if (id == R.id.nav_configuracao) {
+                    Intent TelaConfiguracao = new Intent(MainActivity.this, MainSettings.class);
+                    startActivity(TelaConfiguracao);
+                    return true;
+
+                }
+
+                return false;
+            }
+        });
     }
-
 }
