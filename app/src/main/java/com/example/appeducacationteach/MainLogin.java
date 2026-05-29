@@ -88,7 +88,7 @@ public class MainLogin extends AppCompatActivity {
             Intent telaPrincipal;
 
             if (tipoUsuario.equals("professor")) {
-                telaPrincipal = new Intent(MainLogin.this, MainProfessor.class);
+                telaPrincipal = new Intent(MainLogin.this, MainTeacher.class);
             } else {
                 telaPrincipal = new Intent(MainLogin.this, MainActivity.class);
             }

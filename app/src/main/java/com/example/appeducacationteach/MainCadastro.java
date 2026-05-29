@@ -14,7 +14,7 @@ import com.example.appeducacationteach.model.UsuarioProfessor;
 
 public class MainCadastro extends AppCompatActivity {
 
-    private EditText senhaCadastro, emailCadastra, nomeCadsatro, nickCadastro;
+    private EditText senhaCadastro, emailCadastra, nomeCadsatro, nickCadastro, cpfCadastro;
     private Button btnCadastrarAluno, btnCadastrarProfessor;
     private UsuarioAlDAO usuarioAlDAO;
     private UsuarioProfDAO usuarioProfDAO;
@@ -43,25 +43,14 @@ public class MainCadastro extends AppCompatActivity {
         String email    = emailCadastra.getText().toString();
         String nome     = nomeCadsatro.getText().toString();
         String nickname = nickCadastro.getText().toString();
+        String cpf = cpfCadastro.getText().toString();
 
         if (!email.isEmpty() && !senha.isEmpty() && !nome.isEmpty() && !nickname.isEmpty()) {
-
-            Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
 
             boolean sucesso;
 
             if (tipo.equals("professor")) {
-
-
-
-                UsuarioProfessor professor = new UsuarioProfessor(
-                        nickname,
-                        nome,
-                        email,
-                        "",
-                        senha,
-                        ""
-                );
+                UsuarioProfessor professor = new UsuarioProfessor(nome, nickname, email, senha, cpf);
                 sucesso = usuarioProfDAO.inserir(professor);
             } else {
                 UsuarioAluno aluno = new UsuarioAluno(nome, nickname, email, senha);

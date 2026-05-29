@@ -20,6 +20,9 @@ public class UsuarioProfessor {
         this.discplina = discplina;
     }
 
+    public UsuarioProfessor(String nome, String nickname, String email, String senha, String cpf) {
+    }
+
     public int getId() {
         return id;
     }
