@@ -94,6 +94,7 @@ public class MainLogin extends AppCompatActivity {
             }
 
             telaPrincipal.putExtra("tipo_usuario", tipoUsuario);
+            telaPrincipal.putExtra("email_usuario", Email.getText().toString().trim());
             startActivity(telaPrincipal);
         }
 

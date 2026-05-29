@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_inicio"
+        android:icon="@drawable/house_chimney_blank_9243282"
+        android:title="Início" />
+
+    <item
+        android:id="@+id/nav_trilhas"
+        android:icon="@drawable/smart_contract_19012017"
+        android:title="Projeto" />
+
+    <item
+        android:id="@+id/nav_ranking"
+        android:icon="@drawable/rank_19007196"
+        android:title="Ranking" />
+
+    <item
+        android:id="@+id/nav_configuracao"
+        android:icon="@drawable/simbolo_de_interface_de_configuracao_de_duas_rodas_dentadas"
+        android:title="Configuração" />
+
+    <item
+        android:id="@+id/nav_educacao"
+        android:icon="@drawable/book_3927603"
+        android:title="Educação" />
+
+</menu>
