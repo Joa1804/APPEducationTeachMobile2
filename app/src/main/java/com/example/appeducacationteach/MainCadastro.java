@@ -46,10 +46,22 @@ public class MainCadastro extends AppCompatActivity {
 
         if (!email.isEmpty() && !senha.isEmpty() && !nome.isEmpty() && !nickname.isEmpty()) {
 
+            Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
+
             boolean sucesso;
 
             if (tipo.equals("professor")) {
-                UsuarioProfessor professor = new UsuarioProfessor(nome, nickname, email, senha);
+
+
+
+                UsuarioProfessor professor = new UsuarioProfessor(
+                        nickname,
+                        nome,
+                        email,
+                        "",
+                        senha,
+                        ""
+                );
                 sucesso = usuarioProfDAO.inserir(professor);
             } else {
                 UsuarioAluno aluno = new UsuarioAluno(nome, nickname, email, senha);

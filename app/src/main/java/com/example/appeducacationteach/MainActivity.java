@@ -5,7 +5,12 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import android.view.MenuItem;
+import android.widget.TextView;
+
 import com.google.android.material.navigation.NavigationBarView;
+
+import com.example.appeducacationteach.dao.UsuarioAlDAO;
+import com.example.appeducacationteach.model.UsuarioAluno;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +24,9 @@ import com.google.android.material.navigation.NavigationBarView;
 public class MainActivity extends AppCompatActivity {
 
     Button Login;
+    TextView txtNivel, txtPontos, txtClassificacao;
     BottomNavigationView bottomNavigation;
+    UsuarioAlDAO usuarioAlDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Login = findViewById(R.id.btnLogin);
+        txtNivel = findViewById(R.id.txtNivel);
+        txtPontos = findViewById(R.id.txtPontos);
+        txtClassificacao = findViewById(R.id.txtClassificacao);
+
+
+        usuarioAlDAO = new UsuarioAlDAO(this);
+
+        String emailUsuario = getIntent().getStringExtra("email_usuario");
+
+
+
+        if (emailUsuario != null) {
+            UsuarioAluno aluno = usuarioAlDAO.buscarPorEmail(emailUsuario);
+
+
+            if (aluno != null) {
+                txtNivel.setText("Nivel " + aluno.getNivel());
+                txtPontos.setText("Pontos: " + aluno.getPontos());
+                txtClassificacao.setText("Classificacao: " + getClasificacao(aluno.getPontos()));
+            }
+        }
 
         Login.setOnClickListener(v -> {
             Intent TelaLogin = new Intent(MainActivity.this, MainLogin.class);
@@ -69,6 +97,15 @@ public class MainActivity extends AppCompatActivity {
 
                 return false;
             }
+
         });
+    }
+
+    private String getClasificacao(int Pontos) {
+        if (Pontos >= 3000) return "💎 Diamante";
+        if (Pontos >= 2000) return "🥇 Platina";
+        if (Pontos >= 1000) return "🥇 Ouro";
+        if (Pontos >= 500)  return "🥈 Prata";
+        return "🥉 Bronze";
     }
 }
