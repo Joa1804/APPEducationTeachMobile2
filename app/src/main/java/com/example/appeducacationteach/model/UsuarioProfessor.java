@@ -21,6 +21,11 @@ public class UsuarioProfessor {
     }
 
     public UsuarioProfessor(String nome, String nickname, String email, String senha, String cpf) {
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.CPF = cpf;
+        this.idProfessor = nickname;
     }
 
     public int getId() {

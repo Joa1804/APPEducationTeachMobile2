@@ -18,8 +18,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class MainProject extends AppCompatActivity {
+import com.example.appeducacationteach.adapter.AtividadeAdapter;
+import com.example.appeducacationteach.dao.AtividadeDAO;
+import com.example.appeducacationteach.model.Atividade;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainProject extends AppCompatActivity {
 
     Button Casa, Rank, Configuracao, Projeto, Educacoa, novaAtividade;
     LinearLayout containerProjetos;
@@ -38,21 +46,43 @@ public class MainProject extends AppCompatActivity {
         Educacoa = findViewById(R.id.btnEducao);
         containerProjetos = findViewById(R.id.containerProjetos);
 
-        Rank.setOnClickListener(v -> {
-            Intent TelaRank = new Intent(MainProject.this, MainRank.class);
-            startActivity(TelaRank);
-        });
+        btnNovoProjeto.setOnClickListener(v -> exibirDialogNovaAtividade());
 
-        Configuracao.setOnClickListener(v -> {
-            Intent TelaConfiguracao = new Intent(MainProject.this, MainSettings.class);
-            startActivity(TelaConfiguracao);
-        });
+        configurarNavegacao();
+    }
 
-
-        Educacoa.setOnClickListener(v -> {
-            Intent TelaEducacao = new Intent(MainProject.this, MainEducation.class );
-            startActivity(TelaEducacao);
+    private void configurarRecyclerView() {
+        rvAtividades.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new AtividadeAdapter(listaAtividades, atividade -> {
+            Intent intent = new Intent(MainProject.this, AtividadeDetalheActivity.class);
+            intent.putExtra("titulo", atividade.getTitulo());
+            intent.putExtra("data", atividade.getDataEntrega());
+            intent.putExtra("enunciado", atividade.getEnunciado());
+            startActivity(intent);
+        }, atividade -> {
+            exibirOpcoesAtividade(atividade);
         });
+        rvAtividades.setAdapter(adapter);
+    }
+
+    private void exibirOpcoesAtividade(Atividade atividade) {
+        String[] opcoes = {"Editar", "Excluir"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Opções para: " + atividade.getTitulo())
+                .setItems(opcoes, (dialog, which) -> {
+                    if (which == 0) {
+                        exibirDialogEditarAtividade(atividade);
+                    } else if (which == 1) {
+                        confirmarExclusao(atividade);
+                    }
+                })
+                .show();
+    }
+
+    private void exibirDialogEditarAtividade(Atividade atividade) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View view = inflater.inflate(R.layout.dialog_nova_atividade, null);
 
         Casa.setOnClickListener(v -> {
             Intent TelaCasa = new Intent(MainProject.this, MainActivity.class );

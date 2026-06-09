@@ -8,10 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseConection extends SQLiteOpenHelper{
 
     private static final String DB_NAME = "app.db";
-    private static final int DB_VERSION = 6;
+    private static final int DB_VERSION = 7;
 
     public static final String TABELA_USUARIO_ALU = "UsuarioAluno";
     public static final String TABELA_USUARIO_PROF = "UsuarioProfessor";
+    public static final String TABELA_ATIVIDADE = "Atividade";
 
     public DatabaseConection(Context context) {
         super(context,DB_NAME,null,DB_VERSION);
@@ -37,8 +38,18 @@ public class DatabaseConection extends SQLiteOpenHelper{
                 "nivel INTEGER DEFAULT 1," +
                 "pontos INTEGER DEFAULT 0)";
 
+        String sqlAtividade = "CREATE TABLE " + TABELA_ATIVIDADE + "(" +
+                "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "titulo TEXT," +
+                "enunciado TEXT," +
+                "dificuldade TEXT," +
+                "exemploentrada TEXT," +
+                "exemplosaida TEXT," +
+                "dataEntrega TEXT)";
+
         db.execSQL(sqlAluno);
         db.execSQL(sqlProf);
+        db.execSQL(sqlAtividade);
 
     }
 
@@ -46,6 +57,7 @@ public class DatabaseConection extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO_ALU);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_USUARIO_PROF);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_ATIVIDADE);
         onCreate(db);
     }
 

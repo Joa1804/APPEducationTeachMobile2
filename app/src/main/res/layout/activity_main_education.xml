@@ -18,25 +18,9 @@
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineTopo"
-        app:layout_constraintEnd_toStartOf="@+id/btnLogin2"
-        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnLogin2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cadastro"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#C084FC"
-        app:icon="@drawable/login"
-        app:iconTint="#C084FC"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTopo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="24dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTopo"
@@ -205,58 +189,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <Button
-            android:id="@+id/btnDesafio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/smart_contract_19012017"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnEducao"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/book_3927603"
-            app:iconSize="27dp"
-            app:iconTint="#673AB7" /> <Button
-        android:id="@+id/btnCasa"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        app:icon="@drawable/house_chimney_blank_9243282"
-        app:iconSize="27dp"
-        app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnRank"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/rank_19007196"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnConfiguracao"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/simbolo_de_interface_de_configuracao_de_duas_rodas_dentadas"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="@android:color/white"
+        app:itemIconTint="@color/nav_item_colors"
+        app:itemTextColor="@color/nav_item_colors"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+         />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

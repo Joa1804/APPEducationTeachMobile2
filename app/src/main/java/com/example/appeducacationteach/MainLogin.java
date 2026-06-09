@@ -39,23 +39,13 @@ public class MainLogin extends AppCompatActivity {
         usuarioAlDAO = new UsuarioAlDAO(this);
         usuarioProfDAO = new UsuarioProfDAO(this);
 
-        String textcadastra = "Cadastra";
-        SpannableString ss = new SpannableString(textcadastra);
-
-        ClickableSpan clickableSpan = new ClickableSpan() {
+        Cadastro.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(@NonNull View widget) {
-
+            public void onClick(View v) {
                 Intent PaginadeCadastro = new Intent(MainLogin.this, MainCadastro.class);
                 startActivity(PaginadeCadastro);
-
             }
-        };
-
-        ss.setSpan(clickableSpan, 0, textcadastra.length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        Cadastro.setText(ss);
-        Cadastro.setMovementMethod(LinkMovementMethod.getInstance());
+        });
 
 
         Entrarda.setOnClickListener(new View.OnClickListener() {

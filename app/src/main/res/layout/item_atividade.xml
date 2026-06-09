@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txtTituloAtividade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nome da Atividade"
+            android:textColor="#1E293B"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtDataEntrega"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Entrega: 00/00/0000"
+            android:textColor="#64748B"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtDificuldade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Dificuldade: Fácil"
+            android:textColor="#2563EB"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
