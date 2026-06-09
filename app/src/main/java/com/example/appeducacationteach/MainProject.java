@@ -100,7 +100,6 @@ public class MainProject extends AppCompatActivity {
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnDificuldade.setAdapter(spinnerAdapter);
 
-        // Preenche com os dados atuais
         edtTitulo.setText(atividade.getTitulo());
         edtData.setText(atividade.getDataEntrega());
         edtEnunciado.setText(atividade.getEnunciado());

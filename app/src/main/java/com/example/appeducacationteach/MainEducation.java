@@ -27,8 +27,6 @@ public class MainEducation extends AppCompatActivity {
 
 
         bottomNavigation = findViewById(R.id.bottomNavigation);
-
-        // Marca o ícone de educação como selecionado
         bottomNavigation.setSelectedItemId(R.id.nav_educacao);
 
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -46,7 +44,7 @@ public class MainEducation extends AppCompatActivity {
                     startActivity(new Intent(MainEducation.this, MainRank.class));
                     return true;
                 } else if (id == R.id.nav_educacao) {
-                    return true; // já está aqui
+                    return true;
                 } else if (id == R.id.nav_configuracao) {
                     startActivity(new Intent(MainEducation.this, MainSettings.class));
                     return true;

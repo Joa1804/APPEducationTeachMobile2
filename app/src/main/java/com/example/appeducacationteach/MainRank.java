@@ -26,8 +26,6 @@ public class MainRank extends AppCompatActivity {
         setContentView(R.layout.activity_main_rank);
 
         bottomNavigation = findViewById(R.id.bottomNavigation);
-
-        // Marca o ícone de ranking como selecionado
         bottomNavigation.setSelectedItemId(R.id.nav_ranking);
 
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -42,7 +40,7 @@ public class MainRank extends AppCompatActivity {
                     startActivity(new Intent(MainRank.this, MainProject.class));
                     return true;
                 } else if (id == R.id.nav_ranking) {
-                    return true; // já está aqui
+                    return true;
                 } else if (id == R.id.nav_educacao) {
                     startActivity(new Intent(MainRank.this, MainEducation.class));
                     return true;

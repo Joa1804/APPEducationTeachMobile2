@@ -57,7 +57,7 @@ public class MainSettings extends AppCompatActivity {
                     startActivity(new Intent(MainSettings.this, MainEducation.class));
                     return true;
                 } else if (id == R.id.nav_configuracao) {
-                    return true; // já está aqui
+                    return true;
                 }
                 return false;
             }

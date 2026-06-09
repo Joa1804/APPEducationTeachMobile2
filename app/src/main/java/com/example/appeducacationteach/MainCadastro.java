@@ -43,7 +43,7 @@ public class MainCadastro extends AppCompatActivity {
         String email    = emailCadastra.getText().toString();
         String nome     = nomeCadsatro.getText().toString();
         String nickname = nickCadastro.getText().toString();
-        String cpf      = ""; // CPF não está no layout atual
+        String cpf      = "";
 
         if (!email.isEmpty() && !senha.isEmpty() && !nome.isEmpty() && !nickname.isEmpty()) {
 

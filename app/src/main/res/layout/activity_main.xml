@@ -10,7 +10,6 @@
     android:background="@drawable/bg_gradient"
     tools:context=".MainActivity">
 
-    <!-- Cabeçalho -->
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -38,7 +37,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.5"/>
 
-    <!-- Card principal -->
     <androidx.cardview.widget.CardView
         android:id="@+id/cardDashboard"
         android:layout_width="0dp"
@@ -58,7 +56,6 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Informações do usuário -->
             <TextView
                 android:id="@+id/txtNivel"
                 android:layout_width="wrap_content"
@@ -85,7 +82,6 @@
                 android:textStyle="bold"
                 android:layout_marginBottom="12dp"/>
 
-            <!-- Barra de progresso -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +99,6 @@
                 android:progressTint="#673AB7"
                 android:layout_marginBottom="16dp"/>
 
-            <!-- Logo e título -->
             <ImageView
                 android:id="@+id/imgLogo"
                 android:layout_width="80dp"
@@ -132,7 +127,6 @@
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <!-- Barra inferior otimizada -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"

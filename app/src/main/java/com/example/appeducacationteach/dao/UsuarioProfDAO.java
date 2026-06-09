@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.appeducacationteach.database.DatabaseConection;
-import com.example.appeducacationteach.model.UsuarioProfessor; // Importante!
+import com.example.appeducacationteach.model.UsuarioProfessor;
 
 public class UsuarioProfDAO {
 

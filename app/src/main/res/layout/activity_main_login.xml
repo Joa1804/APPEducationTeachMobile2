@@ -19,7 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Ícone -->
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="72dp"
@@ -27,7 +26,6 @@
             android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/user_3917688" />
 
-        <!-- Título -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,7 +36,6 @@
             android:textSize="26sp"
             android:textStyle="bold" />
 
-        <!-- Subtítulo -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,7 +45,6 @@
             android:textColor="#888888"
             android:layout_marginBottom="24dp" />
 
-        <!-- Label Email -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -57,7 +53,6 @@
             android:textSize="13sp"
             android:layout_marginBottom="4dp" />
 
-        <!-- Campo Email -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -72,7 +67,6 @@
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Label Senha -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,7 +75,6 @@
             android:textSize="13sp"
             android:layout_marginBottom="4dp" />
 
-        <!-- Campo Senha -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -97,7 +90,6 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Botão Entrar único -->
         <Button
             android:id="@+id/btnEntrada"
             android:layout_width="match_parent"
@@ -108,7 +100,6 @@
             android:backgroundTint="#6C63FF"
             android:layout_marginBottom="16dp" />
 
-        <!-- Cadastro -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
