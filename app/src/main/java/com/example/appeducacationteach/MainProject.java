@@ -3,22 +3,20 @@ package com.example.appeducacationteach;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import com.example.appeducacationteach.adapter.AtividadeAdapter;
 import com.example.appeducacationteach.dao.AtividadeDAO;
@@ -31,12 +29,8 @@ import java.util.List;
 
 public class MainProject extends AppCompatActivity {
 
-    private RecyclerView rvAtividades;
-    private AtividadeAdapter adapter;
-    private List<Atividade> listaAtividades = new ArrayList<>();
-    private AtividadeDAO atividadeDAO;
-    private Button btnNovoProjeto;
-    private BottomNavigationView bottomNavigation;
+    Button Casa, Rank, Configuracao, Projeto, Educacoa, novaAtividade;
+    LinearLayout containerProjetos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +38,13 @@ public class MainProject extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main_project);
 
-        atividadeDAO = new AtividadeDAO(this);
-        rvAtividades = findViewById(R.id.rvAtividades);
-        btnNovoProjeto = findViewById(R.id.btnNovoProjeto);
-        bottomNavigation = findViewById(R.id.bottomNavigation);
-
-        configurarRecyclerView();
-        carregarAtividades();
+        novaAtividade = findViewById(R.id.btnNovoProjeto);
+        Casa = findViewById(R.id.btnCasa);
+        Rank = findViewById(R.id.btnRank);
+        Configuracao  =findViewById(R.id.btnConfiguracao);
+        Projeto = findViewById(R.id.btnDesafio);
+        Educacoa = findViewById(R.id.btnEducao);
+        containerProjetos = findViewById(R.id.containerProjetos);
 
         btnNovoProjeto.setOnClickListener(v -> exibirDialogNovaAtividade());
 
@@ -90,125 +84,78 @@ public class MainProject extends AppCompatActivity {
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_nova_atividade, null);
 
-        EditText edtTitulo = view.findViewById(R.id.edtTituloAtividade);
-        EditText edtData = view.findViewById(R.id.edtDataEntrega);
-        EditText edtEnunciado = view.findViewById(R.id.edtEnunciado);
-        Spinner spnDificuldade = view.findViewById(R.id.spnDificuldade);
+        Casa.setOnClickListener(v -> {
+            Intent TelaCasa = new Intent(MainProject.this, MainActivity.class );
+            startActivity(TelaCasa);
+        });
+        
+        novaAtividade.setOnClickListener(v -> {
+            mostrarDialogNovoProjeto();
+        });
 
-        String[] dificuldades = {"Fácil", "Médio", "Difícil"};
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dificuldades);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnDificuldade.setAdapter(spinnerAdapter);
-
-        edtTitulo.setText(atividade.getTitulo());
-        edtData.setText(atividade.getDataEntrega());
-        edtEnunciado.setText(atividade.getEnunciado());
-        for (int i = 0; i < dificuldades.length; i++) {
-            if (dificuldades[i].equals(atividade.getDificuldade())) {
-                spnDificuldade.setSelection(i);
-                break;
-            }
-        }
-
-        builder.setView(view)
-                .setTitle("Editar Atividade")
-                .setPositiveButton("Salvar", (dialog, which) -> {
-                    atividade.setTitulo(edtTitulo.getText().toString());
-                    atividade.setDataEntrega(edtData.getText().toString());
-                    atividade.setEnunciado(edtEnunciado.getText().toString());
-                    atividade.setDificuldade(spnDificuldade.getSelectedItem().toString());
-
-                    if (!atividade.getTitulo().isEmpty() && !atividade.getDataEntrega().isEmpty()) {
-                        if (atividadeDAO.atualizar(atividade)) {
-                            Toast.makeText(this, "Atividade atualizada!", Toast.LENGTH_SHORT).show();
-                            carregarAtividades();
-                        }
-                    }
-                })
-                .setNegativeButton("Cancelar", null)
-                .show();
     }
 
-    private void confirmarExclusao(Atividade atividade) {
-        new AlertDialog.Builder(this)
-                .setTitle("Excluir Atividade")
-                .setMessage("Tem certeza que deseja excluir '" + atividade.getTitulo() + "'?")
-                .setPositiveButton("Sim", (dialog, which) -> {
-                    if (atividadeDAO.deletar(atividade.getId())) {
-                        Toast.makeText(this, "Atividade excluída!", Toast.LENGTH_SHORT).show();
-                        carregarAtividades();
-                    }
-                })
-                .setNegativeButton("Não", null)
-                .show();
-    }
-
-    private void carregarAtividades() {
-        listaAtividades.clear();
-        listaAtividades.addAll(atividadeDAO.listar());
-        adapter.notifyDataSetChanged();
-    }
-
-    private void exibirDialogNovaAtividade() {
+    private void mostrarDialogNovoProjeto() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialog_nova_atividade, null);
+        View dialogView = inflater.inflate(R.layout.dialog_novo_projeto, null);
+        builder.setView(dialogView);
 
-        EditText edtTitulo = view.findViewById(R.id.edtTituloAtividade);
-        EditText edtData = view.findViewById(R.id.edtDataEntrega);
-        EditText edtEnunciado = view.findViewById(R.id.edtEnunciado);
-        Spinner spnDificuldade = view.findViewById(R.id.spnDificuldade);
+        EditText editNome = dialogView.findViewById(R.id.editNomeAtividade);
+        EditText editData = dialogView.findViewById(R.id.editDataAtividade);
 
-        String[] dificuldades = {"Fácil", "Médio", "Difícil"};
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, dificuldades);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spnDificuldade.setAdapter(spinnerAdapter);
+        // Preencher data atual por padrão
+        String dataAtual = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
+        editData.setText(dataAtual);
 
-        builder.setView(view)
-                .setTitle("Nova Atividade")
-                .setPositiveButton("Salvar", (dialog, which) -> {
-                    String titulo = edtTitulo.getText().toString();
-                    String data = edtData.getText().toString();
-                    String enunciado = edtEnunciado.getText().toString();
-                    String dificuldade = spnDificuldade.getSelectedItem().toString();
+        builder.setPositiveButton("Criar", (dialog, which) -> {
+            String nome = editNome.getText().toString().trim();
+            String data = editData.getText().toString().trim();
 
-                    if (!titulo.isEmpty() && !data.isEmpty()) {
-                        Atividade novaAt = new Atividade(titulo, enunciado, dificuldade, "", "", data);
-                        if (atividadeDAO.inserir(novaAt)) {
-                            Toast.makeText(this, "Atividade adicionada!", Toast.LENGTH_SHORT).show();
-                            carregarAtividades();
-                        }
-                    } else {
-                        Toast.makeText(this, "Preencha o título e a data", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setNegativeButton("Cancelar", null)
-                .show();
-    }
-
-    private void configurarNavegacao() {
-        bottomNavigation.setSelectedItemId(R.id.nav_trilhas);
-        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                int id = item.getItemId();
-                if (id == R.id.nav_inicio) {
-                    startActivity(new Intent(MainProject.this, MainActivity.class));
-                    return true;
-                } else if (id == R.id.nav_trilhas) {
-                    return true;
-                } else if (id == R.id.nav_ranking) {
-                    startActivity(new Intent(MainProject.this, MainRank.class));
-                    return true;
-                } else if (id == R.id.nav_educacao) {
-                    startActivity(new Intent(MainProject.this, MainEducation.class));
-                    return true;
-                } else if (id == R.id.nav_configuracao) {
-                    startActivity(new Intent(MainProject.this, MainSettings.class));
-                    return true;
-                }
-                return false;
+            if (!nome.isEmpty() && !data.isEmpty()) {
+                adicionarCardProjeto(nome, data);
+            } else {
+                Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
             }
         });
+
+        builder.setNegativeButton("Cancelar", null);
+        builder.create().show();
     }
+
+    private void adicionarCardProjeto(String nome, String data) {
+        if (containerProjetos == null) {
+            Toast.makeText(this, "Erro: Container não inicializado", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View viewProjeto = inflater.inflate(R.layout.item_projeto, containerProjetos, false);
+
+        TextView txtTitulo = viewProjeto.findViewById(R.id.txtTituloProjeto);
+        TextView txtData = viewProjeto.findViewById(R.id.txtDataProjeto);
+        Button btnEntrar = viewProjeto.findViewById(R.id.btnEntrarProjeto);
+        View card = viewProjeto.findViewById(R.id.cardProjeto);
+
+        txtTitulo.setText(nome);
+        txtData.setText(data);
+
+        // Ao clicar no card, mostra/esconde o botão de entrar
+        card.setOnClickListener(v -> {
+            if (btnEntrar.getVisibility() == View.GONE) {
+                btnEntrar.setVisibility(View.VISIBLE);
+            } else {
+                btnEntrar.setVisibility(View.GONE);
+            }
+        });
+
+        // Configurar ação do botão Entrar
+        btnEntrar.setOnClickListener(v -> {
+            Toast.makeText(this, "Entrando em: " + nome, Toast.LENGTH_SHORT).show();
+            // Aqui você pode adicionar a lógica para abrir a tela da atividade específica
+        });
+
+        containerProjetos.addView(viewProjeto);
+    }
+
 }
