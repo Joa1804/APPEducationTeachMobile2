@@ -2,7 +2,9 @@ package com.example.appeducacationteach;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,10 +12,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
 public class MainSettings extends AppCompatActivity {
 
 
-    Button Casa, Rank, Configuracao, Projeto, Educacoa;
+    BottomNavigationView bottomNavigation;
+    TextView btnSair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,30 +27,40 @@ public class MainSettings extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main_settings);
 
-        Casa = findViewById(R.id.btnCasa);
-        Rank = findViewById(R.id.btnRank);
-        Configuracao  =findViewById(R.id.btnConfiguracao);
-        Projeto = findViewById(R.id.btnDesafio);
-        Educacoa = findViewById(R.id.btnEducao);
+        bottomNavigation = findViewById(R.id.bottomNavigation);
+        btnSair = findViewById(R.id.btnSair);
 
-        Rank.setOnClickListener(v -> {
-            Intent TelaRank = new Intent(MainSettings.this, MainRank.class);
-            startActivity(TelaRank);
+        btnSair.setOnClickListener(v -> {
+            Intent intent = new Intent(MainSettings.this, MainLogin.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         });
 
-        Projeto.setOnClickListener(v -> {
-            Intent TelsProjeto = new Intent(MainSettings.this, MainProject.class);
-            startActivity(TelsProjeto);
-        });
+        bottomNavigation.setSelectedItemId(R.id.nav_configuracao);
 
-        Educacoa.setOnClickListener(v -> {
-            Intent TelaEducacao = new Intent(MainSettings.this, MainEducation.class );
-            startActivity(TelaEducacao);
-        });
+        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+                int id = item.getItemId();
 
-        Casa.setOnClickListener(v -> {
-            Intent TelaCasa = new Intent(MainSettings.this, MainActivity.class );
-            startActivity(TelaCasa);
+                if (id == R.id.nav_inicio) {
+                    startActivity(new Intent(MainSettings.this, MainActivity.class));
+                    return true;
+                } else if (id == R.id.nav_trilhas) {
+                    startActivity(new Intent(MainSettings.this, MainProject.class));
+                    return true;
+                } else if (id == R.id.nav_ranking) {
+                    startActivity(new Intent(MainSettings.this, MainRank.class));
+                    return true;
+                } else if (id == R.id.nav_educacao) {
+                    startActivity(new Intent(MainSettings.this, MainEducation.class));
+                    return true;
+                } else if (id == R.id.nav_configuracao) {
+                    return true; // já está aqui
+                }
+                return false;
+            }
         });
 
     }

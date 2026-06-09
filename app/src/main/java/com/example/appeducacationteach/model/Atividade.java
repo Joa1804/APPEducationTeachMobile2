@@ -8,13 +8,23 @@ public class Atividade {
     private String dificuldade;
     private String exemploentrada;
     private String exemplosaida;
+    private String dataEntrega;
 
-    public Atividade(String titulo, String enunciado, String dificuldade, String exemploentrada, String exemplosaida){
+    public Atividade(String titulo, String enunciado, String dificuldade, String exemploentrada, String exemplosaida, String dataEntrega){
         this.titulo = titulo;
         this.enunciado = enunciado;
         this.dificuldade = dificuldade;
         this.exemploentrada = exemploentrada;
         this.exemplosaida = exemplosaida;
+        this.dataEntrega = dataEntrega;
+    }
+
+    public String getDataEntrega() {
+        return dataEntrega;
+    }
+
+    public void setDataEntrega(String dataEntrega) {
+        this.dataEntrega = dataEntrega;
     }
 
     public int getId() {

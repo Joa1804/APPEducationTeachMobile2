@@ -14,7 +14,6 @@ import com.example.appeducacationteach.model.UsuarioAluno;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigationevent.NavigationEventDispatcherOwner;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -57,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Login.setOnClickListener(v -> {
-            Intent TelaLogin = new Intent(MainActivity.this, MainLogin.class);
-            startActivity(TelaLogin);
+            Intent TelaCadastro = new Intent(MainActivity.this, MainCadastro.class);
+            startActivity(TelaCadastro);
         });
 
         bottomNavigation = findViewById(R.id.bottomNavigation);
