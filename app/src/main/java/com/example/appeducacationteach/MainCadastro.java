@@ -14,7 +14,7 @@ import com.example.appeducacationteach.model.UsuarioProfessor;
 
 public class MainCadastro extends AppCompatActivity {
 
-    private EditText senhaCadastro, emailCadastra, nomeCadsatro, nickCadastro, cpfCadastro;
+    private EditText senhaCadastro, emailCadastra, nomeCadsatro, nickCadastro;
     private Button btnCadastrarAluno, btnCadastrarProfessor;
     private UsuarioAlDAO usuarioAlDAO;
     private UsuarioProfDAO usuarioProfDAO;
@@ -43,7 +43,7 @@ public class MainCadastro extends AppCompatActivity {
         String email    = emailCadastra.getText().toString();
         String nome     = nomeCadsatro.getText().toString();
         String nickname = nickCadastro.getText().toString();
-        String cpf = cpfCadastro.getText().toString();
+        String cpf      = "";
 
         if (!email.isEmpty() && !senha.isEmpty() && !nome.isEmpty() && !nickname.isEmpty()) {
 

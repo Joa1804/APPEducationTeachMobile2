@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.appeducacationteach.database.DatabaseConection;
-import com.example.appeducacationteach.model.UsuarioProfessor; // Importante!
+import com.example.appeducacationteach.model.UsuarioProfessor;
 
 public class UsuarioProfDAO {
 
@@ -33,14 +33,13 @@ public class UsuarioProfDAO {
         return resultado != -1;
     }
 
-    public boolean login(String senha, String email) {
-        db = con.getWritableDatabase();
+    public boolean login(String email, String senha) {
+        db = con.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(
-                "SELECT * FROM " +DatabaseConection.TABELA_USUARIO_PROF +
-                        " WHERE email = ? AND senha = ? AND nome = ? AND CPF = ?",
+                "SELECT * FROM " + DatabaseConection.TABELA_USUARIO_PROF +
+                        " WHERE email = ? AND senha = ?",
                 new String[]{email, senha}
-
         );
 
         boolean existe = cursor.getCount() > 0;

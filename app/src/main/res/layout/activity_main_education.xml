@@ -14,29 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/aclonica"
-        android:text="Educa Teach"
+        android:text="EducaTech"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineTopo"
-        app:layout_constraintEnd_toStartOf="@+id/btnLogin2"
-        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnLogin2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cadastro"
-        android:backgroundTint="#FFFFFF"
-        android:textColor="#C084FC"
-        app:icon="@drawable/login"
-        app:iconTint="#C084FC"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTopo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="24dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTopo"
@@ -205,7 +189,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-    <!-- Barra inferior otimizada -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
@@ -216,5 +199,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_nav_menu"
          />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

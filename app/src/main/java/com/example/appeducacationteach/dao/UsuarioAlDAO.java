@@ -71,8 +71,8 @@ public class UsuarioAlDAO {
                     cursor.getString(cursor.getColumnIndexOrThrow("senha"))
             );
             aluno.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
-            aluno.setNivel(cursor.getInt(cursor.getColumnIndexOrThrow("Nivel")));
-            aluno.setPontos(cursor.getInt(cursor.getColumnIndexOrThrow("Pontos")));
+            aluno.setNivel(cursor.getInt(cursor.getColumnIndexOrThrow("nivel")));
+            aluno.setPontos(cursor.getInt(cursor.getColumnIndexOrThrow("pontos")));
             cursor.close();
 
             return aluno;

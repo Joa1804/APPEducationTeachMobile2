@@ -15,27 +15,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/aclonica"
-        android:text="Educa Teach"
+        android:text="EducaTech"
         android:textColor="#212121"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnLogin5"
-        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnLogin5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Cadastro"
-        android:backgroundTint="#673AB7"
-        android:textColor="#FFFFFF"
-        app:icon="@drawable/login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="24dp" />
 
     <LinearLayout
         android:id="@+id/layoutHeaderAjuda"
@@ -76,7 +61,7 @@
         android:layout_marginBottom="16dp"
         android:orientation="vertical"
         android:weightSum="2"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutHeaderAjuda">
@@ -258,80 +243,27 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/btnSair"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ver Perguntas →"
-                    android:textColor="#2563EB"
+                    android:text="Sair da Conta →"
+                    android:textColor="#EF4444"
                     android:textStyle="bold"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:clickable="true"
+                    android:focusable="true" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:orientation="horizontal"
-        android:background="#FFFFFF"
-        android:elevation="8dp"
+        android:background="@android:color/white"
+        app:itemIconTint="@color/nav_item_colors"
+        app:itemTextColor="@color/nav_item_colors"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/btnDesafio"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/smart_contract_19012017"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnEducao"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/book_3927603"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnCasa"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/house_chimney_blank_9243282"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnRank"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/rank_19007196"
-            app:iconSize="27dp"
-            app:iconTint="#757575" />
-
-        <Button
-            android:id="@+id/btnConfiguracao"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:icon="@drawable/simbolo_de_interface_de_configuracao_de_duas_rodas_dentadas"
-            app:iconSize="27dp"
-            app:iconTint="#673AB7" /> </LinearLayout>
+        app:menu="@menu/bottom_nav_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
